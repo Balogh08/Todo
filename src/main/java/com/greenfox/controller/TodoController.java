@@ -63,7 +63,8 @@ public class TodoController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(int searchBy, String searchFor) {
-        return "";
+    public String search(@RequestParam("searchBy") int searchBy, @RequestParam("searchFor") String searchFor, Model model) {
+        model.addAttribute("todos", todoService.search(searchBy, searchFor));
+        return "todolist";
     }
 }

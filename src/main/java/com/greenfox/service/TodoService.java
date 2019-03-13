@@ -51,4 +51,15 @@ public class TodoService {
         todo.setDone(done);
         todoRepository.save(todo);
     }
+
+    public List<Todo> search(int searchBy, String searchFor) {
+        List<Todo> backUp = new ArrayList<>();
+        List<Todo> result;
+        todoRepository.findAll().forEach(backUp::add);
+        result = backUp.stream()
+                .filter(todo -> searchBy == 1 ? todo.getTitle().toLowerCase().contains(searchFor.toLowerCase()) : todo.getId() == Integer.parseInt(searchFor))
+                .collect(Collectors.toList());
+
+        return result;
+    }
 }
