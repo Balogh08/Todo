@@ -67,4 +67,9 @@ public class TodoController {
         model.addAttribute("todos", todoService.search(searchBy, searchFor));
         return "todolist";
     }
+
+    @RequestMapping("/assignee")
+    public String assignee() {
+        return "assignee";
+    }
 }
