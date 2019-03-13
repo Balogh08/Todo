@@ -1,0 +1,7 @@
+td {
+    border: solid black 2px;
+}
+
+tr.grey:hover {
+    background-color: lightgrey;
+}

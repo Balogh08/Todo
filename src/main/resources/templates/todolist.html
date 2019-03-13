@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-theme.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="form-group">
+        <h1 class="text-center">Todos for today:</h1>
+        <a th:href="@{/todo/add}" th:method="GET" class="btn btn-warning text-center">Add to ToDo</a>
+    </div>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>ACTION</th>
+            <th>DONE</th>
+            <th>URGENT</th>
+        </tr>
+        <tr th:each="todo : ${todos}" class="grey">
+            <td th:text="${todo.getId()}"></td>
+            <td th:text="${todo.title}"></td>
+            <td th:text="${todo.isDone()}"></td>
+            <td th:text="${todo.isUrgent()}"></td>
+            <td>
+                <form action="#" th:action="@{'/todo/'+${todo.getId()}+'/delete'}" th:method="delete">
+                    <input type="submit" value="DELETE" class="btn btn-danger">
+                </form>
+            </td>
+            <td>
+                <a th:href="@{'/todo/'+${todo.getId()}+'/delete'}" class="btn btn-danger">DELETE</a>
+            </td>
+            <td>
+                <a th:href="@{'/todo/'+${todo.getId()}+'/edit'}" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
