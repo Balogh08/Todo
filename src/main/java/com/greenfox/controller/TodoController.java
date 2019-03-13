@@ -61,4 +61,9 @@ public class TodoController {
         todoService.update(id, newToDo, urgent, done);
         return "redirect:/todo";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(int searchBy, String searchFor) {
+        return "";
+    }
 }
